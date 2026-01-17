@@ -3,78 +3,98 @@
 import Link from 'next/link';
 import ProductCard from '@/components/ui/ProductCard';
 import { digitalProducts } from '@/data/products';
+import { BookOpen, ArrowRight, CreditCard, Sparkles } from 'lucide-react';
 
 export default function DigitalProducts() {
   return (
-    <section className="py-16 bg-amber-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="bg-white rounded-2xl shadow-sm p-6 mb-8">
-          <div className="flex items-start mb-4">
-            <div className="bg-orange-500 text-white p-2 rounded-lg mr-4">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-                />
-              </svg>
-            </div>
-            <div className="flex-1">
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">
-                Produits Digitaux
-              </h2>
-              <p className="text-gray-600 mb-4">
-                Découvrez et achetez des e-books, formations vidéo, documents et contenus
-                numériques créés par des talents guinéens. Vous pouvez aussi vendre vos propres
-                produits !
-              </p>
-              <div className="flex items-center">
-                <span className="text-sm font-medium text-gray-700 mr-3">
-                  Paiements acceptés :
-                </span>
-                <div className="flex items-center space-x-2">
-                  <span className="bg-orange-500 text-white text-xs font-semibold px-3 py-1 rounded-full">
-                    Orange Money
-                  </span>
-                  <span className="bg-yellow-400 text-gray-900 text-xs font-semibold px-3 py-1 rounded-full">
-                    MTN Mobile Money
-                  </span>
+    <section className="section bg-gradient-to-b from-white to-neutral-50 relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-accent-purple/5 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent-orange/5 rounded-full blur-3xl"></div>
+
+      <div className="container-custom relative">
+        {/* Header premium */}
+        <div className="max-w-5xl mx-auto mb-16">
+          <div className="card p-8 md:p-10 bg-gradient-to-br from-white to-neutral-50/50 border border-neutral-200/50">
+            <div className="flex flex-col lg:flex-row gap-8">
+              {/* Icon et titre */}
+              <div className="flex-shrink-0">
+                <div className="relative">
+                  <div className="absolute inset-0 bg-gradient-to-br from-accent-orange to-accent-yellow rounded-3xl blur-xl opacity-20"></div>
+                  <div className="relative w-20 h-20 bg-gradient-to-br from-accent-orange to-accent-yellow rounded-3xl flex items-center justify-center shadow-soft-lg">
+                    <BookOpen className="w-10 h-10 text-white" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Contenu */}
+              <div className="flex-1">
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-accent-orange/10 rounded-full text-accent-orange text-sm font-semibold mb-4">
+                  <Sparkles className="w-4 h-4" />
+                  <span>Nouveau</span>
+                </div>
+                <h2 className="text-display-sm md:text-display-md font-display text-neutral-900 mb-3">
+                  Produits Digitaux
+                </h2>
+                <p className="text-lg text-neutral-600 leading-relaxed mb-6">
+                  Découvrez et achetez des e-books, formations vidéo, documents et contenus
+                  numériques créés par des talents guinéens. Vous pouvez aussi vendre vos propres
+                  produits !
+                </p>
+
+                {/* Badges de paiement */}
+                <div className="flex flex-wrap items-center gap-4">
+                  <div className="flex items-center gap-2">
+                    <CreditCard className="w-5 h-5 text-neutral-600" />
+                    <span className="text-sm font-semibold text-neutral-700">
+                      Paiements acceptés :
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="px-4 py-2 bg-gradient-to-r from-accent-orange to-accent-yellow rounded-xl text-white text-sm font-bold shadow-soft flex items-center gap-2">
+                      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                        <circle cx="12" cy="12" r="10" />
+                      </svg>
+                      Orange Money
+                    </div>
+                    <div className="px-4 py-2 bg-gradient-to-r from-accent-yellow to-yellow-500 rounded-xl text-neutral-900 text-sm font-bold shadow-soft flex items-center gap-2">
+                      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                        <circle cx="12" cy="12" r="10" />
+                      </svg>
+                      MTN Mobile Money
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Products Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-8">
-          {digitalProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
+        {/* Grille de produits */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6 mb-12">
+          {digitalProducts.map((product, index) => (
+            <div
+              key={product.id}
+              className="animate-fade-in-up"
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
+              <ProductCard product={product} />
+            </div>
           ))}
         </div>
 
-        {/* View More Button */}
+        {/* CTA Button */}
         <div className="text-center">
           <Link
             href="/produits"
-            className="inline-flex items-center px-8 py-3 border-2 border-blue-600 text-blue-600 rounded-full font-semibold hover:bg-blue-600 hover:text-white transition-colors"
+            className="group inline-flex items-center gap-3 px-10 py-4 bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white rounded-2xl font-bold text-lg shadow-soft-lg hover:shadow-glow transition-all duration-300 hover:-translate-y-1"
           >
-            <span>Voir plus de contenu</span>
-            <svg
-              className="w-5 h-5 ml-2"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
+            <span>Découvrir tous les produits</span>
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </Link>
+          <p className="mt-4 text-sm text-neutral-600">
+            Plus de 100 produits digitaux disponibles
+          </p>
         </div>
       </div>
     </section>

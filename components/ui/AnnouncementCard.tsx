@@ -1,115 +1,101 @@
 'use client';
 
-import Image from 'next/image';
+import { useState } from 'react';
 import { Announcement } from '@/types';
+import { MapPin, Phone, MessageCircle, Heart, Eye, Zap } from 'lucide-react';
 
 interface AnnouncementCardProps {
   announcement: Announcement;
 }
 
 export default function AnnouncementCard({ announcement }: AnnouncementCardProps) {
+  const [isFavorite, setIsFavorite] = useState(false);
+
   return (
-    <div className="bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden group">
-      {/* Image Container */}
-      <div className="relative h-48 overflow-hidden">
-        <div className="w-full h-full bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center">
-          <span className="text-gray-400 text-sm">Image à venir</span>
+    <div className="card-interactive group">
+      {/* Image Container avec overlay gradient */}
+      <div className="relative h-56 overflow-hidden rounded-t-2xl bg-gradient-to-br from-primary-100 via-primary-50 to-accent-orange/10">
+        {/* Placeholder pour l'image */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="text-center p-6">
+            <div className="w-16 h-16 mx-auto mb-3 rounded-2xl bg-white shadow-soft flex items-center justify-center">
+              <span className="text-3xl">👷</span>
+            </div>
+            <p className="text-sm text-neutral-500 font-medium">Photo à venir</p>
+          </div>
         </div>
+
+        {/* Overlay au survol */}
+        <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
+
+        {/* Badge Urgent */}
         {announcement.isUrgent && (
-          <div className="absolute top-3 left-3 bg-red-500 text-white text-xs font-semibold px-3 py-1 rounded-full">
-            Urgent
+          <div className="absolute top-4 left-4">
+            <div className="flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-red-500 to-accent-orange rounded-full text-white text-xs font-bold shadow-lg animate-bounce-subtle">
+              <Zap className="w-3 h-3 fill-current" />
+              <span>URGENT</span>
+            </div>
           </div>
         )}
+
+        {/* Bouton favori */}
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            setIsFavorite(!isFavorite);
+          }}
+          className="absolute top-4 right-4 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-soft hover:shadow-soft-md transition-all duration-200 hover:scale-110 active:scale-95"
+        >
+          <Heart
+            className={`w-5 h-5 transition-all duration-200 ${
+              isFavorite
+                ? 'fill-red-500 text-red-500 scale-110'
+                : 'text-neutral-600'
+            }`}
+          />
+        </button>
+
+        {/* Compteur de vues */}
+        <div className="absolute bottom-4 right-4">
+          <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white/90 backdrop-blur-sm rounded-full text-neutral-700 text-xs font-semibold shadow-soft">
+            <Eye className="w-3.5 h-3.5" />
+            <span>{announcement.views.toLocaleString()}</span>
+          </div>
+        </div>
       </div>
 
       {/* Content */}
-      <div className="p-4">
-        <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-1">
+      <div className="p-5">
+        {/* Titre */}
+        <h3 className="text-lg font-bold text-neutral-900 mb-3 line-clamp-2 min-h-[3.5rem] group-hover:text-primary-600 transition-colors">
           {announcement.title}
         </h3>
-        <div className="flex items-center text-sm text-gray-500 mb-4">
-          <svg
-            className="w-4 h-4 mr-1"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-            />
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-            />
-          </svg>
-          <span>{announcement.location}, {announcement.city}</span>
+
+        {/* Localisation */}
+        <div className="flex items-center gap-2 mb-5 text-neutral-600">
+          <div className="p-1.5 bg-accent-orange/10 rounded-lg">
+            <MapPin className="w-4 h-4 text-accent-orange" />
+          </div>
+          <span className="text-sm font-medium">
+            {announcement.location}, <span className="text-neutral-500">{announcement.city}</span>
+          </span>
         </div>
 
         {/* Actions */}
-        <div className="flex items-center justify-between pt-3 border-t border-gray-100">
-          <div className="flex items-center space-x-3">
-            {/* Call Button */}
-            <button className="p-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                />
-              </svg>
-            </button>
-
-            {/* Message Button */}
-            <button className="p-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-                />
-              </svg>
-            </button>
-
-            {/* Favorite Button */}
-            <button className="p-2 text-gray-600 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                />
-              </svg>
-            </button>
-          </div>
-
-          {/* Views */}
-          <div className="flex items-center text-sm text-gray-500">
-            <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-              />
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-              />
-            </svg>
-            <span>{announcement.views} vues</span>
-          </div>
+        <div className="flex items-center gap-2">
+          <button className="flex-1 btn-secondary group/btn">
+            <Phone className="w-4 h-4 group-hover/btn:rotate-12 transition-transform" />
+            <span className="text-sm">Appeler</span>
+          </button>
+          <button className="flex-1 btn-primary">
+            <MessageCircle className="w-4 h-4" />
+            <span className="text-sm">Message</span>
+          </button>
         </div>
       </div>
+
+      {/* Barre de couleur en bas pour la variété */}
+      <div className="h-1 bg-gradient-to-r from-primary-500 via-accent-orange to-accent-yellow"></div>
     </div>
   );
 }
