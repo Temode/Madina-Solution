@@ -1,10 +1,14 @@
+import Header from "@/components/layout/Header"
+import HeroSection from "@/components/sections/hero_section/HeroSection";
+
 export default function Home() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold text-gray-900">Hello World</h1>
-        <p className="mt-4 text-gray-600">Madina Solution - Prêt pour le développement</p>
-      </div>
+    <div className="flex flex-col min-h-screen bg-gray-100">
+      <Header />
+      <main className="flex-1">
+        <HeroSection />
+        {/* Votre contenu ici */}
+      </main>
     </div>
   );
 }
