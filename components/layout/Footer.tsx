@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Phone, MapPin, Mail, Facebook, Twitter, Instagram, ArrowRight, Heart } from 'lucide-react';
+import { Phone, MapPin, Mail, Facebook, Twitter, Instagram } from 'lucide-react';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -26,70 +26,52 @@ export default function Footer() {
   };
 
   const socialLinks = [
-    { icon: Facebook, href: '#', label: 'Facebook', color: 'hover:bg-blue-600' },
-    { icon: Twitter, href: '#', label: 'Twitter', color: 'hover:bg-sky-500' },
-    { icon: Instagram, href: '#', label: 'Instagram', color: 'hover:bg-pink-600' },
+    { icon: Facebook, href: '#', label: 'Facebook' },
+    { icon: Twitter, href: '#', label: 'Twitter' },
+    { icon: Instagram, href: '#', label: 'Instagram' },
   ];
 
   return (
-    <footer className="bg-neutral-900 text-neutral-300 relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 bg-gradient-to-b from-neutral-900 via-neutral-900 to-neutral-950"></div>
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary-600/5 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent-purple/5 rounded-full blur-3xl"></div>
-
-      <div className="relative container-custom">
+    <footer className="bg-gray-900 text-gray-300">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main Footer Content */}
-        <div className="py-16 lg:py-20">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8">
+        <div className="py-12 lg:py-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8">
             {/* Brand Section */}
             <div className="lg:col-span-4">
-              <Link href="/" className="inline-flex items-center gap-3 group mb-6">
-                <div className="relative">
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary-600 to-primary-700 rounded-2xl blur-lg opacity-20 group-hover:opacity-30 transition-opacity"></div>
-                  <div className="relative bg-gradient-to-br from-primary-600 to-primary-700 text-white w-12 h-12 rounded-2xl flex items-center justify-center font-display font-bold text-xl shadow-soft-md">
-                    M
-                  </div>
+              <Link href="/" className="inline-flex items-center gap-2 mb-4">
+                <div className="bg-blue-600 text-white w-9 h-9 rounded flex items-center justify-center font-bold text-lg">
+                  M
                 </div>
-                <div className="flex flex-col">
-                  <span className="font-display text-2xl font-bold text-white tracking-tight">
-                    adina
-                  </span>
-                  <span className="text-xs text-neutral-500 font-medium tracking-wide -mt-1">
-                    SOLUTION
-                  </span>
+                <div className="flex items-baseline gap-1">
+                  <span className="text-xl font-semibold text-white">adina</span>
+                  <span className="text-sm text-gray-400">Solution</span>
                 </div>
               </Link>
 
-              <p className="text-neutral-400 mb-6 leading-relaxed">
+              <p className="text-gray-400 mb-6">
                 La plateforme de référence pour connecter clients et professionnels qualifiés en
                 Guinée. Plomberie, électricité, BTP, informatique et plus encore.
               </p>
 
               {/* Contact Info */}
-              <div className="space-y-3">
+              <div className="space-y-2">
                 <a
                   href="tel:+224628440360"
-                  className="flex items-center gap-3 text-sm text-neutral-400 hover:text-white transition-colors group"
+                  className="flex items-center gap-2 text-sm text-gray-400 hover:text-white"
                 >
-                  <div className="p-2 bg-neutral-800 rounded-lg group-hover:bg-primary-600 transition-colors">
-                    <Phone className="w-4 h-4" />
-                  </div>
+                  <Phone className="w-4 h-4" />
                   <span>(+224) 628-44-03-60</span>
                 </a>
                 <a
                   href="mailto:contact@madinasolution.com"
-                  className="flex items-center gap-3 text-sm text-neutral-400 hover:text-white transition-colors group"
+                  className="flex items-center gap-2 text-sm text-gray-400 hover:text-white"
                 >
-                  <div className="p-2 bg-neutral-800 rounded-lg group-hover:bg-primary-600 transition-colors">
-                    <Mail className="w-4 h-4" />
-                  </div>
+                  <Mail className="w-4 h-4" />
                   <span>contact@madinasolution.com</span>
                 </a>
-                <div className="flex items-start gap-3 text-sm text-neutral-400">
-                  <div className="p-2 bg-neutral-800 rounded-lg">
-                    <MapPin className="w-4 h-4" />
-                  </div>
+                <div className="flex items-start gap-2 text-sm text-gray-400">
+                  <MapPin className="w-4 h-4 mt-0.5" />
                   <span>Lambangui, Conakry<br />République de Guinée</span>
                 </div>
               </div>
@@ -97,16 +79,15 @@ export default function Footer() {
 
             {/* Links Sections */}
             <div className="lg:col-span-2">
-              <h3 className="text-white font-display font-semibold text-lg mb-6">Entreprise</h3>
-              <ul className="space-y-3">
+              <h3 className="text-white font-semibold text-base mb-4">Entreprise</h3>
+              <ul className="space-y-2">
                 {footerLinks.company.map((link) => (
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-neutral-400 hover:text-white transition-colors inline-flex items-center gap-2 group"
+                      className="text-gray-400 hover:text-white text-sm"
                     >
-                      <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 -ml-6 group-hover:ml-0 transition-all" />
-                      <span>{link.name}</span>
+                      {link.name}
                     </Link>
                   </li>
                 ))}
@@ -114,16 +95,15 @@ export default function Footer() {
             </div>
 
             <div className="lg:col-span-3">
-              <h3 className="text-white font-display font-semibold text-lg mb-6">Services</h3>
-              <ul className="space-y-3">
+              <h3 className="text-white font-semibold text-base mb-4">Services</h3>
+              <ul className="space-y-2">
                 {footerLinks.services.map((link) => (
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-neutral-400 hover:text-white transition-colors inline-flex items-center gap-2 group"
+                      className="text-gray-400 hover:text-white text-sm"
                     >
-                      <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 -ml-6 group-hover:ml-0 transition-all" />
-                      <span>{link.name}</span>
+                      {link.name}
                     </Link>
                   </li>
                 ))}
@@ -131,16 +111,15 @@ export default function Footer() {
             </div>
 
             <div className="lg:col-span-3">
-              <h3 className="text-white font-display font-semibold text-lg mb-6">Support</h3>
-              <ul className="space-y-3 mb-8">
+              <h3 className="text-white font-semibold text-base mb-4">Support</h3>
+              <ul className="space-y-2 mb-6">
                 {footerLinks.support.map((link) => (
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-neutral-400 hover:text-white transition-colors inline-flex items-center gap-2 group"
+                      className="text-gray-400 hover:text-white text-sm"
                     >
-                      <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 -ml-6 group-hover:ml-0 transition-all" />
-                      <span>{link.name}</span>
+                      {link.name}
                     </Link>
                   </li>
                 ))}
@@ -148,7 +127,7 @@ export default function Footer() {
 
               {/* Social Links */}
               <div>
-                <p className="text-white font-semibold mb-4">Suivez-nous</p>
+                <p className="text-white font-semibold text-sm mb-3">Suivez-nous</p>
                 <div className="flex gap-3">
                   {socialLinks.map((social) => {
                     const Icon = social.icon;
@@ -156,10 +135,10 @@ export default function Footer() {
                       <a
                         key={social.label}
                         href={social.href}
-                        className={`w-11 h-11 bg-neutral-800 rounded-xl flex items-center justify-center ${social.color} transition-all duration-200 hover:scale-110 hover:-translate-y-1 group`}
+                        className="w-9 h-9 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-gray-700 transition-colors"
                         aria-label={social.label}
                       >
-                        <Icon className="w-5 h-5 text-neutral-400 group-hover:text-white transition-colors" />
+                        <Icon className="w-4 h-4" />
                       </a>
                     );
                   })}
@@ -170,13 +149,13 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-neutral-800 py-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-sm text-neutral-500">
+        <div className="border-t border-gray-800 py-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-2">
+            <p className="text-sm text-gray-500">
               © {currentYear} Madina Solution. Tous droits réservés.
             </p>
-            <p className="text-sm text-neutral-500 flex items-center gap-1.5">
-              Fait avec <Heart className="w-4 h-4 text-red-500 fill-current animate-bounce-subtle" /> en Guinée
+            <p className="text-sm text-gray-500">
+              Fait avec ❤️ en Guinée
             </p>
           </div>
         </div>
