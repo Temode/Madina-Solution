@@ -5,10 +5,18 @@
   gap: 1rem;
   background-color: white;
   padding: 20px 30px;
-  border-radius: 8px;
+  border-radius: 16px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   max-width: 800px;
   width: 90%;
+    z-index: 20;
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+
+
 }
 
 .search {
@@ -19,7 +27,7 @@
   background-color: #F5F5F4;
   border: 1px solid #D6D3D1;
   padding: 8px 12px;
-  border-radius: 16px;
+  border-radius: 12px;
   border-color: #D6D3D1;
 }
 
@@ -31,7 +39,7 @@
   background-color: #F5F5F4;
   border: 1px solid #D6D3D1;
   padding: 8px 12px;
-  border-radius: 16px;
+  border-radius: 12px;
   border-color: #D6D3D1;
 }
 
@@ -50,7 +58,7 @@
   border: none;
   outline: none;
   font-size: 1rem;
-  padding: 8px;
+  padding: 12px;
   width: 100%;
   background: transparent;
   font-family: inherit;
@@ -76,7 +84,7 @@
   color: white;
   border: none;
   padding: 20px 30px;
-  border-radius: 16px;
+  border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   transition: background-color 0.3s ease;
